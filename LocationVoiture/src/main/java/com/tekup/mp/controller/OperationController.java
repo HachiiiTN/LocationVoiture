@@ -34,6 +34,4 @@ public class OperationController {
 		return "voiture/showVehicule";
     }
 	
-	
-	
 }
