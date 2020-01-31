@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title th:utext="${title}"></title>
+	</head>
+   
+	<body>
+		<h2>Message : <span th:utext="${message}"></span></h2>
+		
+		<form th:object="${voiture}" th:action="@{/postAddVoiture}" method="POST">
+			<table>
+				<tr>
+					<th align="left">Immatriculation</th>
+					<td><input type="text" th:field="*{immatriculation}"></td>
+				</tr>
+				<tr>
+					<th align="left">Marque</th>
+					<td><input type="text" th:field="*{marque}"></td>
+				</tr>
+				<tr>
+					<th align="left">Date Mise en Circulation</th>
+					<td><input type="date" ></td>
+				</tr>
+				<tr>
+					<th align="left">Prix</th>
+					<td><input type="number" min="0" th:field="*{prixLocation}"></td>
+				</tr>
+				<tr colspan=2>
+					<td><input type="submit" value ="Add Vehicule" width="100%"></td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>
