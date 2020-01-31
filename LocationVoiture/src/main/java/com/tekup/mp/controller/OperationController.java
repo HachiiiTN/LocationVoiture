@@ -30,6 +30,7 @@ public class OperationController {
 	
 	@PostMapping("/posAddVoiture")
     public String addVoitureToDatabase(Voiture voiture){
+		
         voitureService.addVoiture(voiture);
 		return "voiture/showVehicule";
     }
