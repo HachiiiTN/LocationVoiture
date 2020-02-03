@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Show message</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+	<h3>List Voitures</h3>
+	
+	<table border=1>
+		<tr>
+			<th>ID</th>
+			<th>Matricule</th>
+			<th>Marque</th>
+			<th>Date de Mise en Circulation</th>
+			<th>Prix</th>
+		</tr>
+		<tr th:each="voiture : ${voitures}">
+			<td th:text="${voiture.voitureID}"></td>
+			<td th:text="${voiture.immatriculation}"></td>
+			<td th:text="${voiture.marque}"></td>
+			<td th:text="${voiture.dateMiseCirculation}"></td>
+			<td th:text="${voiture.prixLocation}"></td>
+		</tr>
+	</table>
+
+</body>
+</html>
