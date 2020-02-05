@@ -27,4 +27,11 @@ public class VoitureService implements VoitureInterface{
 	public Voiture saveVoiture(Voiture voiture) {
 		return voitureRepository.save(voiture);
 	}
+
+	@Override
+	public void deleteVoitureById(Long id) {
+		voitureRepository.deleteById(id);
+	}
+	
+	
 }

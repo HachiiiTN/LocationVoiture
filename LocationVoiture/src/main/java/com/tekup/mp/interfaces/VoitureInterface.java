@@ -10,4 +10,6 @@ public interface VoitureInterface {
 	
 	Voiture saveVoiture(Voiture voiture);
 	
+	void deleteVoitureById(Long id);
+	
 }

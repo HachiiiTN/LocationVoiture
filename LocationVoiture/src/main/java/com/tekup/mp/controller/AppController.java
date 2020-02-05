@@ -19,7 +19,7 @@ public class AppController {
     }
 	
 	//Show add new voiture form
-	@GetMapping("/newVoiture")
+	@GetMapping("/voiture/new")
     public String newVoitureForm(Model model) {
 		model.addAttribute(new Voiture());
 		return "voiture/ajouterVoiture";
