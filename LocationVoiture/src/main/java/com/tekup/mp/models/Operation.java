@@ -1,9 +1,25 @@
 package com.tekup.mp.models;
 
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+@Entity
 public class Operation {
 
-	private String dateDebut;
-	private String dateFin;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long operationID;
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date dateDebut;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date dateFin;
 	private double montantGarantie;
 	private String typeGarantie;
 	private double fraisLocation;
@@ -13,7 +29,7 @@ public class Operation {
 		super();
 	}
 
-	public Operation(String dateDebut, String dateFin, double montantGarantie, String typeGarantie,
+	public Operation(Date dateDebut, Date dateFin, double montantGarantie, String typeGarantie,
 			double fraisLocation, String typePayement) {
 		super();
 		this.dateDebut = dateDebut;
@@ -24,19 +40,26 @@ public class Operation {
 		this.typePayement = typePayement;
 	}
 
-	public String getDateDebut() {
+	public Long getOperationID() {
+		return operationID;
+	}
+
+	public void setOperationID(Long operationID) {
+		this.operationID = operationID;
+	}
+	public Date getDateDebut() {
 		return dateDebut;
 	}
 
-	public void setDateDebut(String dateDebut) {
+	public void setDateDebut(Date dateDebut) {
 		this.dateDebut = dateDebut;
 	}
 
-	public String getDateFin() {
+	public Date getDateFin() {
 		return dateFin;
 	}
 
-	public void setDateFin(String dateFin) {
+	public void setDateFin(Date dateFin) {
 		this.dateFin = dateFin;
 	}
 

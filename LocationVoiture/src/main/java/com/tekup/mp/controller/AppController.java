@@ -5,7 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.tekup.mp.models.Voiture;
+import com.tekup.mp.models.Car;
+import com.tekup.mp.models.Operation;
 
 @Controller
 public class AppController {
@@ -18,10 +19,15 @@ public class AppController {
         return "index";
     }
 	
-	//Show add new voiture form
-	@GetMapping("/newVoiture")
-    public String newVoitureForm(Model model) {
-		model.addAttribute(new Voiture());
-		return "voiture/ajouterVoiture";
+	//Show add new car form
+	@GetMapping("/newCar")
+    public String newCarForm(Model model) {
+		model.addAttribute(new Car());
+		return "car/addCar";
+    }
+	@GetMapping("/newOperation")
+    public String newOperationForm(Model model) {
+		model.addAttribute(new Operation());
+		return "operation/addOperation";
     }
 }

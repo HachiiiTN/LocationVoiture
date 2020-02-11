@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des opérations</title>
+    <meta charset="UTF-8" />
+</head>
+<body>
+
+	<h3>Liste des opérations</h3>
+	
+	<table border=1>
+		<tr>
+			
+			<th>Date Debut</th>
+			<th>Date Fin</th>
+			<th>Montant de garantie</th>
+			<th>Type de garantie</th>
+			<th>Frais de location</th>
+			<th>Type de payement</th>
+		</tr>
+		<tr th:each="operation : ${operations}">
+			<td th:text="${{operation.dateDebut}}"></td>
+			<td th:text="${{operation.dateFin}}"></td>
+			<td th:text="${operation.montantGarantie}"></td>
+			<td th:text="${operation.typeGarantie}"></td>
+			<td th:text="${operation.fraisLocation}"></td>
+			<td th:text="${operation.typePayement}"></td>
+		</tr>
+	</table>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des Voitures</title>
+    <meta charset="UTF-8" />
+</head>
+<body>
+
+	<h3>Liste des Voitures</h3>
+	
+	<table border=1>
+		<tr>
+			<th>Matricule</th>
+			<th>Marque</th>
+			<th>Date de Mise en Circulation</th>
+			<th>Prix</th>
+		</tr>
+		<tr th:each="car : ${cars}">
+			<td th:text="${car.immatriculation}"></td>
+			<td th:text="${car.marque}"></td>
+			<td th:text="${{car.dateMiseCirculation}}"></td>
+			<td th:text="${car.prixLocation}"></td>
+		</tr>
+	</table>
+
+</body>
+</html>

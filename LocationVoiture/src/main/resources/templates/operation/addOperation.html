@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	
+		<title>Ajouter une opération</title>
+		<meta charset="UTF-8">
+		<th:block th:insert="~{fragments/myTemplate :: link}"></th:block>
+		
+	</head>
+   
+	<body>
+	<div th:insert="~{fragments/myTemplate :: nav-bar-fragment}"></div>
+	<div class="container">
+	<div class="row">
+			<div class="col-12">
+		<h2  class="text-info">Message : <span th:utext="${message}"></span></h2>
+		
+		
+		<form th:object="${operation}" th:action="@{/addOperation}" method="POST">
+			<table>
+				<tr>
+					<th align="left">Date Debut</th>
+					<td><input type="date" th:field="*{dateDebut}"></td>
+				</tr>
+				<tr>
+					<th align="left">Date Fin</th>
+					<td><input type="date" th:field="*{dateFin}"></td>
+				</tr>
+				<tr>
+					<th align="left">Montant de garantie</th>
+					<td><input type="number" th:field="*{montantGarantie}"></td>
+				</tr>
+				<tr>
+					<th align="left">Type de garantie</th>
+					<td><input type="text" th:field="*{typeGarantie}"></td> 
+				</tr>
+				<tr>
+					<th align="left">Frais de location</th>
+					<td><input type="number" min="0" th:field="*{fraisLocation}"></td>
+				</tr>
+				<tr>
+					<th align="left">Type de payement</th>
+					<td><select th:field="*{typePayement}">
+    						<option th:value="'Chèque'" th:text="Chèque"></option>
+    						<option th:value="'Espèce'" th:text="Espèce"></option>
+						</select> 
+				</tr>
+				<tr colspan=2>
+					<td><input type="submit" value ="Ajouter opération" width="100%"></td>
+				</tr>
+			</table>
+		</form>
+		</div>
+		</div>
+		</div>
+				<th:block th:insert="~{fragments/myTemplate :: body/script}"></th:block>
+	</body>
+</html>
