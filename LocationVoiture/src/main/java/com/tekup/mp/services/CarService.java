@@ -27,4 +27,9 @@ public class CarService implements CarInterface{
 	public Car saveCar(Car car) {
 		return carRepository.save(car);
 	}
+	
+	@Override
+	public void deleteCarById(Long id) {
+		carRepository.deleteById(id);
+	}
 }

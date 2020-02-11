@@ -19,8 +19,9 @@ public class AppController {
         return "index";
     }
 	
+
 	//Show add new car form
-	@GetMapping("/newCar")
+	@GetMapping("/car/new")
     public String newCarForm(Model model) {
 		model.addAttribute(new Car());
 		return "car/addCar";
@@ -29,5 +30,6 @@ public class AppController {
     public String newOperationForm(Model model) {
 		model.addAttribute(new Operation());
 		return "operation/addOperation";
-    }
+
+	}
 }

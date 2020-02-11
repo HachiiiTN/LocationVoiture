@@ -24,7 +24,7 @@ public class CarController {
     }
 	
 	// Afficher toutes les voituresq
-	@GetMapping("/listCars")
+	@GetMapping("/car/all")
     public String showAllCars(Model model) {
         model.addAttribute("cars", carService.getAllCars());
 		return "car/listCars";
@@ -36,4 +36,10 @@ public class CarController {
         model.addAttribute("car", carService.getCarById(id));
 		return "car/showCar";
     }
+	// Supprimer une voiture
+		@GetMapping("/car/{id}/delete")
+		public String deleteCar(@PathVariable Long id) {
+			carService.deleteCarById(id);
+			return "redirect:/car/all";
+		}
 }

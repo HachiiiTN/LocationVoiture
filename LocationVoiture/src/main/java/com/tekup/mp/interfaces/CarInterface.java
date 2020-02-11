@@ -10,4 +10,5 @@ public interface CarInterface {
 	
 	Car saveCar(Car car);
 	
+	void deleteCarById(Long id);
 }
