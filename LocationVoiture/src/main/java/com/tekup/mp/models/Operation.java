@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -24,6 +25,9 @@ public class Operation {
 	private String typeGarantie;
 	private double fraisLocation;
 	private String typePayement;
+	
+	@OneToOne
+	private Car car;
 	
 	public Operation() {
 		super();
@@ -47,6 +51,17 @@ public class Operation {
 	public void setOperationID(Long operationID) {
 		this.operationID = operationID;
 	}
+	
+	
+
+	public Car getCar() {
+		return car;
+	}
+
+	public void setCar(Car car) {
+		this.car = car;
+	}
+
 	public Date getDateDebut() {
 		return dateDebut;
 	}
@@ -93,13 +108,6 @@ public class Operation {
 
 	public void setTypePayement(String typePayement) {
 		this.typePayement = typePayement;
-	}
-
-	@Override
-	public String toString() {
-		return "Operation [dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", montantGarantie=" + montantGarantie
-				+ ", typeGarantie=" + typeGarantie + ", fraisLocation=" + fraisLocation + ", typePayement="
-				+ typePayement + "]";
 	}
 	
 }

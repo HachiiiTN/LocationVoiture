@@ -19,11 +19,12 @@ public class CarController {
 	// Ajouter une voiture dans la base et afficher l'inforamtions 
 	@PostMapping("/addCar")
     public String saveCarController(Car car){
-        carService.saveCar(car);
+		car.setEtat("Disponible");
+        carService.saveCar(car); 
         return "redirect:/car/" + car.getCarID();
     }
 	
-	// Afficher toutes les voituresq
+	// Afficher toutes les voitures
 	@GetMapping("/car/all")
     public String showAllCars(Model model) {
         model.addAttribute("cars", carService.getAllCars());
@@ -37,9 +38,9 @@ public class CarController {
 		return "car/showCar";
     }
 	// Supprimer une voiture
-		@GetMapping("/car/{id}/delete")
-		public String deleteCar(@PathVariable Long id) {
-			carService.deleteCarById(id);
-			return "redirect:/car/all";
-		}
+	@GetMapping("/car/{id}/delete")
+	public String deleteCar(@PathVariable Long id) {
+		carService.deleteCarById(id);
+		return "redirect:/car/all";
+	}
 }

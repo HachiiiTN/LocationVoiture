@@ -1,5 +1,7 @@
 package com.tekup.mp.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +33,10 @@ public class CarService implements CarInterface{
 	@Override
 	public void deleteCarById(Long id) {
 		carRepository.deleteById(id);
+	}
+
+	@Override
+	public List<Car> findByEtat(String etat) {
+		return carRepository.findByEtat(etat);
 	}
 }

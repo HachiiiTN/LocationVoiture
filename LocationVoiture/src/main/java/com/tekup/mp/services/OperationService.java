@@ -30,5 +30,10 @@ public class OperationService implements OperationInterface{
 		// TODO Auto-generated method stub
 		return operationRepository.save(operation);
 	}
+	
+	@Override
+	public void deleteOperationById(Long id) {
+		operationRepository.deleteById(id);
+	}
 
 }

@@ -9,5 +9,7 @@ Iterable<Operation> getAllOperations();
 	Operation getOperationById(Long id);
 	
 	Operation saveOperation(Operation operation);
+	
+	void deleteOperationById(Long id);
 
 }

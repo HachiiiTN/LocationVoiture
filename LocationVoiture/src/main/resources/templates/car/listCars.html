@@ -14,6 +14,7 @@
 			<th>Marque</th>
 			<th>Date de Mise en Circulation</th>
 			<th>Prix</th>
+			<th>Disponibilité</th>
 			<th colspan=3>Actions</th>
 		</tr>
 		<tr th:each="car : ${cars}">
@@ -21,6 +22,7 @@
 			<td th:text="${car.marque}"></td>
 			<td th:text="${{car.dateMiseCirculation}}"></td>
 			<td th:text="${car.prixLocation}"></td>
+			<td th:text="${car.etat}"></td>
 			<td><a th:href="@{${'/car/'+ car.carID}}"><input type="button" value="Aperçu"></a></td>
 			<td><input type="button" value="Modifier"></td>
 			<td><a th:href="@{${'/car/'+ car.carID +'/delete'}}"><input type="button" value="Supprimer"></a></td>

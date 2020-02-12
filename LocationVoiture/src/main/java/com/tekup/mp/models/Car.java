@@ -20,19 +20,21 @@ public class Car {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateMiseCirculation;
 	private Double prixLocation;
+	private String etat;
 
 	public Car() {
 		super();
 	}
 
 	public Car(Long carID, String immatriculation, String marque, Date dateMiseCirculation,
-			Double prixLocation) {
+			Double prixLocation, String etat) {
 		super();
 		this.carID = carID;
 		this.immatriculation = immatriculation;
 		this.marque = marque;
 		this.dateMiseCirculation = dateMiseCirculation;
 		this.prixLocation = prixLocation;
+		this.etat = etat;
 	}
 
 	
@@ -75,11 +77,12 @@ public class Car {
 	public void setPrixLocation(Double prixLocation) {
 		this.prixLocation = prixLocation;
 	}
+	public String getEtat() {
+		return etat;
+	}
 
-	@Override
-	public String toString() {
-		return "Car [immatriculation=" + immatriculation + ", marque=" + marque + ", dateMiseCirculation="
-				+ dateMiseCirculation + ", prixLocation=" + prixLocation + "]";
+	public void setEtat(String etat) {
+		this.etat = etat;
 	}
 	
 	

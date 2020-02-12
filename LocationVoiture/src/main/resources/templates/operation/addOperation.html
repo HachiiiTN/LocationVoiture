@@ -44,6 +44,14 @@
     						<option th:value="'Chèque'" th:text="Chèque"></option>
     						<option th:value="'Espèce'" th:text="Espèce"></option>
 						</select> 
+					</td>
+				</tr>
+				<tr>
+					<th align="left">Voitures</th>
+					<td><select th:object="${car}"    >
+    						<option th:each="car : ${cars}" th:text="${car.marque}"></option>
+						</select> 
+					</td>
 				</tr>
 				<tr colspan=2>
 					<td><input type="submit" value ="Ajouter opération" width="100%"></td>

@@ -15,6 +15,7 @@
 			<th>Marque</th>
 			<th>Date de Mise en Circulation</th>
 			<th>Prix</th>
+			<th>Disponibilité</th>
 		</tr>
 		<tr>
 			<td th:text="${car.carID}"></td>
@@ -22,6 +23,7 @@
 			<td th:text="${car.marque}"></td>
 			<td th:text="${{car.dateMiseCirculation}}"></td>
 			<td th:text="${car.prixLocation}"></td>
+			<td th:text="${car.etat}"></td>
 		</tr>
 	</table>
 

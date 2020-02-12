@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.tekup.mp.models.Car;
 import com.tekup.mp.models.Operation;
+import com.tekup.mp.services.CarService;
 import com.tekup.mp.services.OperationService;
 
 @Controller
@@ -22,16 +24,22 @@ public class OperationController {
         return "redirect:/operation/" + operation.getOperationID();
        
     }
+	
 	@GetMapping("/operation/{id}")
     public String showOperation(@PathVariable Long id, Model model) {
         model.addAttribute("operation", operationService.getOperationById(id));
 		return "operation/showOperation";
     }
 	
-	// Afficher les operation
-		@GetMapping("/listOperations")
-	    public String showAllOperations(Model model) {
-	        model.addAttribute("operations", operationService.getAllOperations());
-			return "operation/listOperations";
-	    }
+	@GetMapping("/operation/all")
+	public String showAllOperations(Model model) {
+	    model.addAttribute("operations", operationService.getAllOperations());
+		return "operation/listOperations";
+	}
+	
+	@GetMapping("/operation/{id}/delete")
+	public String deleteOperation(@PathVariable Long id) {
+		operationService.deleteOperationById(id);
+		return "redirect:/operation/all";
+	}
 }
