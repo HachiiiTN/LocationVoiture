@@ -3,9 +3,10 @@
 <head>
     <title>Liste des Voitures</title>
     <meta charset="UTF-8" />
+    <th:block th:insert="~{fragments/myTemplate :: link}"></th:block>
 </head>
 <body>
-
+<div th:insert="~{fragments/myTemplate :: nav-bar-fragment}"></div>
 	<h3>Liste des Voitures</h3>
 	
 	<table border=1>

@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
-	
-		<title>Ajouter une opération</title>
-		<meta charset="UTF-8">
-		<th:block th:insert="~{fragments/myTemplate :: link}"></th:block>
 		
+		<meta charset="UTF-8" />
+		<title>Ajouter une opération</title>
+		<th:block th:insert="~{fragments/myTemplate :: link}"></th:block>
+				
 	</head>
    
 	<body>
@@ -16,7 +16,7 @@
 		<h2  class="text-info">Message : <span th:utext="${message}"></span></h2>
 		
 		
-		<form th:object="${operation}" th:action="@{/addOperation}" method="POST">
+		<form th:object="${operation}" th:action="@{/operation/new}" method="POST">
 			<table>
 				<tr>
 					<th align="left">Date Debut</th>
@@ -61,6 +61,5 @@
 		</div>
 		</div>
 		</div>
-				<th:block th:insert="~{fragments/myTemplate :: body/script}"></th:block>
 	</body>
 </html>

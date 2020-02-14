@@ -42,7 +42,7 @@ public class Car {
 		this.etat = etat;
 	}
 
-	/*
+	
 	
 	public Long getCarID() {
 		return carID;
@@ -91,7 +91,15 @@ public class Car {
 	public void setEtat(String etat) {
 		this.etat = etat;
 	}
+
+	public String getModele() {
+		return modele;
+	}
+
+	public void setModele(String modele) {
+		this.modele = modele;
+	}
 	
-	*/
+	
 
 }
