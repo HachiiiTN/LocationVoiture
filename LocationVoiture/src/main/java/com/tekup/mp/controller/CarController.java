@@ -15,28 +15,36 @@ public class CarController {
 
 	@Autowired
 	private CarService carService;
-	
-	// Ajouter une voiture dans la base et afficher l'inforamtions 
-	@PostMapping("/addCar")
-    public String saveCarController(Car car){
+
+	// Show add new car form
+	@GetMapping("/car/new")
+	public String newCarForm(Model model) {
+		model.addAttribute(new Car());
+		return "car/addCar";
+	}
+
+	// Ajouter une voiture dans la base et afficher l'inforamtions
+	@PostMapping("/car/new")
+	public String saveCarController(Car car) {
 		car.setEtat("Disponible");
-        carService.saveCar(car); 
-        return "redirect:/car/" + car.getCarID();
-    }
-	
+		carService.saveCar(car);
+		return "redirect:/car/" + car.getCarID();
+	}
+
 	// Afficher toutes les voitures
 	@GetMapping("/car/all")
-    public String showAllCars(Model model) {
-        model.addAttribute("cars", carService.getAllCars());
+	public String showAllCars(Model model) {
+		model.addAttribute("cars", carService.getAllCars());
 		return "car/listCars";
-    }
-	
+	}
+
 	// Afficher l'information de la voiture avec un id
 	@GetMapping("/car/{id}")
-    public String showCar(@PathVariable Long id, Model model) {
-        model.addAttribute("car", carService.getCarById(id));
+	public String showCar(@PathVariable Long id, Model model) {
+		model.addAttribute("car", carService.getCarById(id));
 		return "car/showCar";
-    }
+	}
+
 	// Supprimer une voiture
 	@GetMapping("/car/{id}/delete")
 	public String deleteCar(@PathVariable Long id) {

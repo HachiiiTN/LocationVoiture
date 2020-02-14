@@ -18,7 +18,18 @@ public class OperationController {
 	@Autowired
 	private OperationService operationService;
 	
-	@PostMapping("/addOperation")
+	@Autowired
+	private CarService carservice;
+	
+	@GetMapping("/operation/new")
+    public String newOperationForm(Model model) {
+		model.addAttribute(new Operation());
+        model.addAttribute("cars", carservice.findByEtat("Disponible"));
+		return "operation/addOperation";
+
+	}
+	
+	@PostMapping("/operation/new")
     public String saveOperationController(Operation operation){
         operationService.saveOperation(operation);
         return "redirect:/operation/" + operation.getOperationID();

@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title th:utext="${title}"></title>
+		<meta charset="UTF-8">
+	</head>
+   
+	<body>
+	
+		<h2>Message : <span th:utext="${message}"></span></h2>
+
+		<a th:href="@{/car/new}">	Ajouter une voiture					</a> /
+		<a th:href="@{/operation/new}">	Ajouter une opération					</a><br>
+		<a th:href="@{/car/all}">	Afficher la liste des voitures		</a> /
+		<a th:href="@{/operation/all}">	Afficher la liste des opérations		</a>
+		
+	</body>
+</html>

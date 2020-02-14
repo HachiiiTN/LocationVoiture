@@ -12,8 +12,6 @@ import com.tekup.mp.services.CarService;
 
 @Controller
 public class AppController {
-	@Autowired
-	private CarService carservice;
 	
 	// Show home page
 	@GetMapping({"/", "/home", "/index"})
@@ -23,18 +21,5 @@ public class AppController {
         return "index";
     }
 	
-
-	//Show add new car form
-	@GetMapping("/car/new")
-    public String newCarForm(Model model) {
-		model.addAttribute(new Car());
-		return "car/addCar";
-    }
-	@GetMapping("/operation/new")
-    public String newOperationForm(Model model) {
-		model.addAttribute(new Operation());
-        model.addAttribute("cars", carservice.findByEtat("Disponible"));
-		return "operation/addOperation";
-
-	}
+	// Error pages goes here
 }

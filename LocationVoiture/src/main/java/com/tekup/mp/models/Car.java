@@ -6,9 +6,12 @@ import javax.persistence.*;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class Car {
 
 	@Id
@@ -17,6 +20,7 @@ public class Car {
 
 	private String immatriculation;
 	private String marque;
+	private String modele;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateMiseCirculation;
 	private Double prixLocation;
@@ -26,17 +30,19 @@ public class Car {
 		super();
 	}
 
-	public Car(Long carID, String immatriculation, String marque, Date dateMiseCirculation,
+	public Car(Long carID, String immatriculation, String marque, String modele, Date dateMiseCirculation,
 			Double prixLocation, String etat) {
 		super();
 		this.carID = carID;
 		this.immatriculation = immatriculation;
 		this.marque = marque;
+		this.modele = modele;
 		this.dateMiseCirculation = dateMiseCirculation;
 		this.prixLocation = prixLocation;
 		this.etat = etat;
 	}
 
+	/*
 	
 	public Long getCarID() {
 		return carID;
@@ -77,6 +83,7 @@ public class Car {
 	public void setPrixLocation(Double prixLocation) {
 		this.prixLocation = prixLocation;
 	}
+	
 	public String getEtat() {
 		return etat;
 	}
@@ -85,6 +92,6 @@ public class Car {
 		this.etat = etat;
 	}
 	
-	
+	*/
 
 }
