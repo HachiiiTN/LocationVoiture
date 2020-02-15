@@ -9,6 +9,7 @@
 	<body>
 	<div th:insert="~{fragments/myTemplate :: nav-bar-fragment}"></div>
 		<h2>Message : <span th:utext="${message}"></span></h2>
+			<th:block th:insert="~{fragments/myTemplate :: body/script}"></th:block>
 		
 	</body>
 </html>
