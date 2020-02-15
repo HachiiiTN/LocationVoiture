@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.tekup.mp.dao.CarRepository;
 import com.tekup.mp.jpa.entities.Car;
-import com.tekup.mp.services.CarInterface;
+import com.tekup.mp.metier.services.CarInterface;
 
 @Service
 public class CarService implements CarInterface{

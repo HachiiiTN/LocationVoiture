@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.tekup.mp.dao.OperationRepository;
 import com.tekup.mp.jpa.entities.Operation;
-import com.tekup.mp.services.OperationInterface;
+import com.tekup.mp.metier.services.OperationInterface;
 
 @Service
 public class OperationService implements OperationInterface{

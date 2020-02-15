@@ -1,4 +1,4 @@
-package com.tekup.mp.services;
+package com.tekup.mp.metier.services;
 
 import com.tekup.mp.jpa.entities.Operation;
 

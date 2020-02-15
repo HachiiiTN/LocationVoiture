@@ -1,4 +1,4 @@
-package com.tekup.mp.services;
+package com.tekup.mp.metier.services;
 
 import java.util.List;
 
