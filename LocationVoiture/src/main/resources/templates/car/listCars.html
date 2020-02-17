@@ -23,7 +23,7 @@
 			<td th:text="${car.prixLocation}"></td>
 			<td th:text="${car.etat}"></td>
 			<td><a th:href="@{${'/car/'+ car.carID}}"><input type="button" value="Aperçu"></a></td>
-			<td><input type="button" value="Modifier"></td>
+			<td><a th:href="@{${'/car/'+ car.carID +'/update'}}"><input type="button" value="Modifier"></a></td>
 			<td><a th:href="@{${'/car/'+ car.carID +'/delete'}}"><input type="button" value="Supprimer"></a></td>
 		</tr>
 	</table>
