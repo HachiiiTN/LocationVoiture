@@ -1,16 +1,15 @@
 package com.tekup.mp.jpa.entities;
 
-import com.tekup.mp.jpa.enums.RoleEnum;
-import com.tekup.mp.tools.BCryptManagerTool;
-
-import lombok.Data;
-
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.StringUtils;
+
+import com.tekup.mp.jpa.enums.RoleEnum;
+import com.tekup.mp.tools.BCryptManagerTool;
+
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -32,7 +31,6 @@ import java.util.stream.Collectors;
 	
 @Entity
 @Table(name = "users")
-@Data
 public class User implements UserDetails {
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
@@ -68,6 +66,7 @@ private boolean accountNonLocked;
 private boolean credentialsNonExpired;
 @Column(name = "enabled")
 private boolean enabled;
+
 public User() {
 	this.accountNonExpired = true;
 	this.accountNonLocked = true;
@@ -86,11 +85,70 @@ public User(String username, String password, String firstname, String lastname,
 	this.enabled = true;
 	this.roles = roles;
 }
+
+public Long getIdUser() {
+	return idUser;
+}
+public void setIdUser(Long idUser) {
+	this.idUser = idUser;
+}
+public String getUsername() {
+	return username;
+}
+public void setUsername(String username) {
+	this.username = username;
+}
+public String getFirstname() {
+	return firstname;
+}
+public void setFirstname(String firstname) {
+	this.firstname = firstname;
+}
+public String getLastname() {
+	return lastname;
+}
+public void setLastname(String lastname) {
+	this.lastname = lastname;
+}
+public Collection<RoleEnum> getRoles() {
+	return roles;
+}
+public void setRoles(Collection<RoleEnum> roles) {
+	this.roles = roles;
+}
+public boolean isAccountNonExpired() {
+	return accountNonExpired;
+}
+public void setAccountNonExpired(boolean accountNonExpired) {
+	this.accountNonExpired = accountNonExpired;
+}
+public boolean isAccountNonLocked() {
+	return accountNonLocked;
+}
+public void setAccountNonLocked(boolean accountNonLocked) {
+	this.accountNonLocked = accountNonLocked;
+}
+public boolean isCredentialsNonExpired() {
+	return credentialsNonExpired;
+}
+public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+	this.credentialsNonExpired = credentialsNonExpired;
+}
+public boolean isEnabled() {
+	return enabled;
+}
+public void setEnabled(boolean enabled) {
+	this.enabled = enabled;
+}
+public String getPassword() {
+	return password;
+}
 @Override
 public Collection<? extends GrantedAuthority> getAuthorities() {
 	String roles =StringUtils.collectionToCommaDelimitedString(getRoles().stream().map(Enum::name).collect(Collectors.toList()));
 	return AuthorityUtils.commaSeparatedStringToAuthorityList(roles);
 }
+
 public void setPassword(String password) {
 	if (!password.isEmpty()) {
 		this.password = BCryptManagerTool.passwordencoder().encode(password);

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<meta charset="UTF-8" />
+	<title>Auth</title>
+	<th:block th:insert="~{fragments/myTemplate :: link}"></th:block>
+</head>
+<body>
+<div th:insert="~{fragments/myTemplate :: nav-bar-fragment}"></div>
+<h1>User Page</h1>
+<ul>
+<li> Logged user:<span sec:authentication="name">Adam</span></li>
+<li> Roles:<span sec:authentication="principal.authorities">[ROLE_USER]</span></li>
+</ul>
+<th:block th:insert="~{fragments/myTemplate :: body/script}"></th:block>
+</body>
+</html>
