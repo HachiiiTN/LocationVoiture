@@ -4,7 +4,6 @@ import com.tekup.mp.web.model.requests.CarForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import com.tekup.mp.jpa.entities.Car;
@@ -12,7 +11,7 @@ import com.tekup.mp.metier.servicesImpl.CarService;
 
 import javax.validation.Valid;
 
-@Controller
+@Controller()
 public class CarController {
 
     @Autowired
@@ -69,7 +68,7 @@ public class CarController {
     }
 
     @PostMapping("/car/{id}/update")
-    public String updateCar(@RequestParam(value = "carID", required = true) Long id, Model model, @Valid @ModelAttribute("carForm") CarForm carForm) {
+    public String updateCar(@RequestParam(value = "carID", required = true) Long id, @Valid @ModelAttribute("carForm") CarForm carForm) {
         for (Car car : carService.getAllCars()) {
             if (car.getCarID() == id) {
                 car.setCarID(carForm.getCarID());

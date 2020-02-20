@@ -74,4 +74,17 @@ public class CarForm {
     public void setEtat(String etat) {
         this.etat = etat;
     }
+
+    @Override
+    public String toString() {
+        return "CarForm{" +
+                "carID=" + carID +
+                ", immatriculation='" + immatriculation + '\'' +
+                ", marque='" + marque + '\'' +
+                ", modele='" + modele + '\'' +
+                ", dateMiseCirculation=" + dateMiseCirculation +
+                ", prixLocation=" + prixLocation +
+                ", etat='" + etat + '\'' +
+                '}';
+    }
 }

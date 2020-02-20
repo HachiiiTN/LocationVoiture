@@ -94,7 +94,9 @@ public class Car {
 	public void setModele(String modele) {
 		this.modele = modele;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return marque + " " + modele;
+	}
 }

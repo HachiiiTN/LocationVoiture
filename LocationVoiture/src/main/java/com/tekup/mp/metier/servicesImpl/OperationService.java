@@ -15,19 +15,16 @@ public class OperationService implements OperationInterface{
 	
 	@Override
 	public Iterable<Operation> getAllOperations() {
-		// TODO Auto-generated method stub
 		return operationRepository.findAll();
 	}
 
 	@Override
 	public Operation getOperationById(Long id) {
-		// TODO Auto-generated method stub
 		return operationRepository.findById(id).orElse(null);
 	}
 
 	@Override
 	public Operation saveOperation(Operation operation) {
-		// TODO Auto-generated method stub
 		return operationRepository.save(operation);
 	}
 	
