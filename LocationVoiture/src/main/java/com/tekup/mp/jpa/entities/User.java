@@ -154,4 +154,20 @@ public void setPassword(String password) {
 		this.password = BCryptManagerTool.passwordencoder().encode(password);
 }
 }
+
+	@Override
+	public String toString() {
+		return "User{" +
+				"idUser=" + idUser +
+				", username='" + username + '\'' +
+				", password='" + password + '\'' +
+				", firstname='" + firstname + '\'' +
+				", lastname='" + lastname + '\'' +
+				", roles=" + roles +
+				", accountNonExpired=" + accountNonExpired +
+				", accountNonLocked=" + accountNonLocked +
+				", credentialsNonExpired=" + credentialsNonExpired +
+				", enabled=" + enabled +
+				'}';
+	}
 }

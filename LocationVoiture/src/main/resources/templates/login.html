@@ -7,7 +7,7 @@
 	<th:block th:insert="~{fragments/myTemplate :: link}"></th:block>
 </header>
 <body>
-	<p th:if="${loginError}">Wrong user or password</p>
+	<!--<p th:if="${loginError}">Wrong user or password</p>-->
 	<div>
 		<form th:action="@{/login}" method="post">
 			<fieldset>
@@ -30,6 +30,6 @@
 		</form>
 	</div>
 
-	<th:block th:insert="~{fragments/myTemplate :: body/script}"></th:block>
+	<!--<th:block th:insert="~{fragments/myTemplate :: body/script}"></th:block>-->
 </body>
 </html>
