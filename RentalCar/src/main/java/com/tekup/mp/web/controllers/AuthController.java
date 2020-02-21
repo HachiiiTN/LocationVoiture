@@ -15,4 +15,11 @@ public class AuthController {
         return "login";
     }
 
+    @PostMapping("/logout")
+    public String logout(Model model) {
+
+        System.err.println("reached here");
+        return "login";
+    }
+
 }
