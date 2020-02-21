@@ -2,6 +2,8 @@ package com.tekup.mp.metier.servicesImpl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,7 @@ import com.tekup.mp.jpa.entities.Car;
 import com.tekup.mp.metier.services.CarInterface;
 
 @Service
+@Transactional
 public class CarService implements CarInterface{
 
 	@Autowired

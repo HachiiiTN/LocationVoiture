@@ -1,5 +1,7 @@
 package com.tekup.mp.metier.servicesImpl;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +10,7 @@ import com.tekup.mp.jpa.entities.Operation;
 import com.tekup.mp.metier.services.OperationInterface;
 
 @Service
+@Transactional
 public class OperationService implements OperationInterface{
 
 	@Autowired
