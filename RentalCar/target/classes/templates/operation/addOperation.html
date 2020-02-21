@@ -14,50 +14,39 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h2 class="text-info">Message : <span th:utext="${message}"></span></h2>
-
+            <h2 class="text-info" th:text="${error}"></h2>
             <th:block th:if="${condition} == 'stepOne'">
                 <form th:object="${operation}" th:action="@{/operation/new}" method="POST">
                     <table>
                         <tr>
                             <th align="left">Date Debut</th>
-                            <td><input type="date" th:field="*{dateDebut}"></td>
+                            <td><input type="date" th:field="*{dateDebut}" required></td>
                         </tr>
                         <tr>
                             <th align="left">Date Fin</th>
-                            <td><input type="date" th:field="*{dateFin}"></td>
+                            <td><input type="date" th:field="*{dateFin}" required></td>
                         </tr>
                         <tr>
                             <th align="left">Montant de garantie</th>
-                            <td><input type="number" th:field="*{montantGarantie}"></td>
+                            <td><input type="number" th:field="*{montantGarantie}" required></td>
                         </tr>
                         <tr>
                             <th align="left">Type de garantie</th>
-                            <td><input type="text" th:field="*{typeGarantie}"></td>
+                            <td><input type="text" th:field="*{typeGarantie}" required></td>
                         </tr>
                         <tr>
                             <th align="left">Frais de location</th>
-                            <td><input type="number" min="0" th:field="*{fraisLocation}"></td>
+                            <td><input type="number" min="0" th:field="*{fraisLocation}" required></td>
                         </tr>
                         <tr>
                             <th align="left">Type de payement</th>
                             <td>
-                                <select th:field="*{typePayement}">
+                                <select th:field="*{typePayement}" required>
                                     <option th:value="'Chèque'" th:text="Chèque"></option>
                                     <option th:value="'Espèce'" th:text="Espèce"></option>
                                 </select>
                             </td>
                         </tr>
-                        <!--
-						<tr>
-                            <th align="left">Voitures</th>
-                            <td>
-                                <select th:object="${car}">
-                                    <option th:each="car : ${cars}" th:text="${car.marque} +' '+ ${car.modele}"></option>
-                                </select>
-                            </td>
-                        </tr>
-                        -->
                         <tr colspan=2>
                             <td><input type="submit" value="Suivant" width="100%"></td>
                         </tr>
@@ -71,9 +60,8 @@
                         <tr>
                             <th align="left">Voiture</th>
                             <td>
-                                <select id="ddCar">
+                                <select id="ddCar" required>
                                     <th:block th:each="c : ${listCars}">
-                                        <!-- <option th:text="${c.marque} +' '+ ${c.modele}" th:value="${c.carID}"></option> -->
                                         <option th:text="${c}" th:value="${c.carID}"></option>
                                     </th:block>
                                 </select>

@@ -1,6 +1,5 @@
 package com.tekup.mp.web.controllers;
 
-import com.tekup.mp.web.model.requests.CarForm;
 import com.tekup.mp.web.model.requests.OperationForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,10 +13,13 @@ import com.tekup.mp.metier.servicesImpl.OperationService;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
 public class OperationController {
+
+    private static String OPERATION_ERROR = "";
 
     @Autowired
     private OperationService operationService;
@@ -28,12 +30,14 @@ public class OperationController {
     @GetMapping("/operation/new")
     public String newOperationForm(Model model) {
         model.addAttribute(new Operation());
+        model.addAttribute("error", OPERATION_ERROR);
         model.addAttribute("condition", "stepOne");
         return "operation/addOperation";
     }
 
     @PostMapping("/operation/new")
     public String addOperation(Operation operation) {
+        OPERATION_ERROR = "";
         operationService.saveOperation(operation);
         return "redirect:/operation/" + operation.getOperationID() + "/car";
     }
@@ -41,14 +45,39 @@ public class OperationController {
     @GetMapping("/operation/{id}/car")
     public String addCarSelection(@PathVariable Long id, Model model) {
         List<Car> listCar = new ArrayList<>();
-        model.addAttribute("condition", "stepTwo");
-        model.addAttribute("operationID", id);
+        Operation newOperation = operationService.getOperationById(id);
+
         for (Car car : carService.getAllCars()) {
             listCar.add(car);
+            for (Operation operation : operationService.getAllOperations()) {
+                if (operation.getOperationID() == id) {
+                    continue;
+                } else {
+                    Date operationDateDebut = operation.getDateDebut();
+                    Date operationDateFin = operation.getDateFin();
+                    Date newDateDebut = newOperation.getDateDebut();
+                    Date newDateFin = newOperation.getDateFin();
+
+                    if ( (newDateDebut.compareTo(operationDateDebut) >= 0 && operationDateFin.compareTo(newDateFin) >= 0)
+                            || (operationDateDebut.compareTo(newDateDebut) <= 0 && operationDateFin.compareTo(newDateFin) >= 0)
+                    ) {
+                        listCar.remove(operation.getCar());
+                    }
+                }
+            }
         }
-        model.addAttribute("listCars", listCar);
-        System.err.println("List : " + listCar);
-        return "operation/addOperation";
+
+        if (listCar.isEmpty()) {
+            operationService.deleteOperationById(id);
+            model.addAttribute("condition", "stepOne");
+            OPERATION_ERROR = "Aucune voiture n'est diponible dans cette date";
+            return "redirect:/operation/new";
+        } else {
+            model.addAttribute("operationID", id);
+            model.addAttribute("condition", "stepTwo");
+            model.addAttribute("listCars", listCar);
+            return "operation/addOperation";
+        }
     }
 
     @PostMapping("/operation/{id}/car/{idCar}")
@@ -57,6 +86,11 @@ public class OperationController {
         operation.setCar(carService.getCarById(idCar));
         operationService.saveOperation(operation);
 
+        Car car;
+        car = carService.getCarById(idCar);
+        car.setEtat("Non Disponible");
+
+        carService.saveCar(car);
         return "redirect:/operation/" + operation.getOperationID();
     }
 

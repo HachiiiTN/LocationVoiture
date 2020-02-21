@@ -3,6 +3,7 @@ package com.tekup.mp.jpa.entities;
 import java.util.Date;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -10,94 +11,103 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "cars")
 public class Car {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long carID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long carID;
 
-	private String immatriculation;
-	private String marque;
-	private String modele;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date dateMiseCirculation;
-	private Double prixLocation;
-	private String etat;
+    @NotNull
+    private String immatriculation;
 
-	public Car() {
-		super();
-	}
+    @NotNull
+    private String marque;
 
-	public Car(Long carID, String immatriculation, String marque, String modele, Date dateMiseCirculation,
-			Double prixLocation, String etat) {
-		super();
-		this.carID = carID;
-		this.immatriculation = immatriculation;
-		this.marque = marque;
-		this.modele = modele;
-		this.dateMiseCirculation = dateMiseCirculation;
-		this.prixLocation = prixLocation;
-		this.etat = etat;
-	}
+    @NotNull
+    private String modele;
 
-	
-	
-	public Long getCarID() {
-		return carID;
-	}
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dateMiseCirculation;
 
-	public void setCarID(Long carID) {
-		this.carID = carID;
-	}
+    @NotNull
+    private Double prixLocation;
 
-	public String getImmatriculation() {
-		return immatriculation;
-	}
+    @NotNull
+    private String etat;
 
-	public void setImmatriculation(String immatriculation) {
-		this.immatriculation = immatriculation;
-	}
+    public Car() {
+        super();
+    }
 
-	public String getMarque() {
-		return marque;
-	}
+    public Car(Long carID, String immatriculation, String marque, String modele, Date dateMiseCirculation, Double prixLocation, String etat) {
+        super();
+        this.carID = carID;
+        this.immatriculation = immatriculation;
+        this.marque = marque;
+        this.modele = modele;
+        this.dateMiseCirculation = dateMiseCirculation;
+        this.prixLocation = prixLocation;
+        this.etat = etat;
+    }
 
-	public void setMarque(String marque) {
-		this.marque = marque;
-	}
 
-	public Date getDateMiseCirculation() {
-		return dateMiseCirculation;
-	}
+    public Long getCarID() {
+        return carID;
+    }
 
-	public void setDateMiseCirculation(Date dateMiseCirculation) {
-		this.dateMiseCirculation = dateMiseCirculation;
-	}
+    public void setCarID(Long carID) {
+        this.carID = carID;
+    }
 
-	public Double getPrixLocation() {
-		return prixLocation;
-	}
+    public String getImmatriculation() {
+        return immatriculation;
+    }
 
-	public void setPrixLocation(Double prixLocation) {
-		this.prixLocation = prixLocation;
-	}
-	
-	public String getEtat() {
-		return etat;
-	}
+    public void setImmatriculation(String immatriculation) {
+        this.immatriculation = immatriculation;
+    }
 
-	public void setEtat(String etat) {
-		this.etat = etat;
-	}
+    public String getMarque() {
+        return marque;
+    }
 
-	public String getModele() {
-		return modele;
-	}
+    public void setMarque(String marque) {
+        this.marque = marque;
+    }
 
-	public void setModele(String modele) {
-		this.modele = modele;
-	}
+    public Date getDateMiseCirculation() {
+        return dateMiseCirculation;
+    }
 
-	@Override
-	public String toString() {
-		return marque + " " + modele;
-	}
+    public void setDateMiseCirculation(Date dateMiseCirculation) {
+        this.dateMiseCirculation = dateMiseCirculation;
+    }
+
+    public Double getPrixLocation() {
+        return prixLocation;
+    }
+
+    public void setPrixLocation(Double prixLocation) {
+        this.prixLocation = prixLocation;
+    }
+
+    public String getEtat() {
+        return etat;
+    }
+
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
+
+    public String getModele() {
+        return modele;
+    }
+
+    public void setModele(String modele) {
+        this.modele = modele;
+    }
+
+    @Override
+    public String toString() {
+        return marque + " " + modele;
+    }
 }

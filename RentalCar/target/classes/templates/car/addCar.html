@@ -1,51 +1,51 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="UTF-8" />
-		<title>Ajouter une voiture</title>
-		<th:block th:insert="~{fragments/myTemplate :: link}"></th:block>
-		
-	</head>
-   
-	<body>
-	<div th:insert="~{fragments/myTemplate :: nav-bar-fragment}"></div>
-	<div class="container">
-	<div class="row">
-			<div class="col-12">
-		<h2  class="text-info">Message : <span th:utext="${message}"></span></h2>
-		
-		
-		<form th:object="${car}" th:action="@{/car/new}" method="POST">
-			<table>
-				<tr>
-					<th align="left">Immatriculation</th>
-					<td><input type="text" th:field="*{immatriculation}"></td>
-				</tr>
-				<tr>
-					<th align="left">Marque</th>
-					<td><input type="text" th:field="*{marque}"></td>
-				</tr>
-				<tr>
-					<th align="left">Modèle</th>
-					<td><input type="text" th:field="*{modele}"></td>
-				</tr>
-				<tr>
-					<th align="left">Date Mise en Circulation</th>
-					<td><input type="date" th:field="*{dateMiseCirculation}"></td> 
-				</tr>
-				<tr>
-					<th align="left">Prix</th>
-					<td><input type="number" min="0" th:field="*{prixLocation}"></td>
-				</tr>
-				<tr colspan=2>
-					<td><input type="submit" value ="Ajouter voiture" width="100%"></td>
-				</tr>
-			</table>
-		</form>
-		</div>
-		</div>
-		</div>
-			<th:block th:insert="~{fragments/myTemplate :: body/script}"></th:block>
-		
-	</body>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Ajouter une voiture</title>
+    <th:block th:insert="~{fragments/myTemplate :: link}"></th:block>
+
+</head>
+
+<body>
+<div th:insert="~{fragments/myTemplate :: nav-bar-fragment}"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-info">Message : <span th:utext="${message}"></span></h2>
+
+
+            <form th:object="${car}" th:action="@{/car/new}" method="POST">
+                <table>
+                    <tr>
+                        <th align="left">Immatriculation</th>
+                        <td><input type="text" th:field="*{immatriculation}" required></td>
+                    </tr>
+                    <tr>
+                        <th align="left">Marque</th>
+                        <td><input type="text" th:field="*{marque}" required></td>
+                    </tr>
+                    <tr>
+                        <th align="left">Modèle</th>
+                        <td><input type="text" th:field="*{modele}" required></td>
+                    </tr>
+                    <tr>
+                        <th align="left">Date Mise en Circulation</th>
+                        <td><input type="date" th:field="*{dateMiseCirculation}" required></td>
+                    </tr>
+                    <tr>
+                        <th align="left">Prix</th>
+                        <td><input type="number" min="0" th:field="*{prixLocation}" required></td>
+                    </tr>
+                    <tr colspan=2>
+                        <td><input type="submit" value="Ajouter voiture" width="100%"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<th:block th:insert="~{fragments/myTemplate :: body/script}"></th:block>
+
+</body>
 </html>
