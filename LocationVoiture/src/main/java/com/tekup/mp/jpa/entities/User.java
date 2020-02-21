@@ -28,146 +28,153 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.stream.Collectors;
 
-	
+
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-@Column(name = "id_user")
-private Long idUser;
-@NotNull
-@Column(name = "username", nullable = false, unique = true)
-private String username;
-@NotNull
-@Column(name = "password", nullable = false)
-private String password;
-@NotNull
-@Column(name = "firstname", nullable = false)
-private String firstname;
-@NotNull
-@Column(name = "lastname", nullable = false)
-private String lastname;
-@ElementCollection(targetClass = RoleEnum.class, fetch = FetchType.EAGER)
-@Cascade(value = CascadeType.REMOVE)
-@JoinTable(
-indexes = {@Index(name = "INDEX_USER_ROLE", columnList = "id_user")},
-name = "roles",
-joinColumns = @JoinColumn(name = "id_user")
-)
-@Column(name = "role", nullable = false)
-@Enumerated(EnumType.STRING)
-private Collection<RoleEnum> roles;
-@Column(name = "account_non_expired")
-private boolean accountNonExpired;
-@Column(name = "account_non_locked")
-private boolean accountNonLocked;
-@Column(name = "credentials_non_expired")
-private boolean credentialsNonExpired;
-@Column(name = "enabled")
-private boolean enabled;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long idUser;
 
-public User() {
-	this.accountNonExpired = true;
-	this.accountNonLocked = true;
-	this.credentialsNonExpired = true;
-	this.enabled = true;
-	this.roles = Collections.singletonList(RoleEnum.AGENT);
-}
-public User(String username, String password, String firstname, String lastname, Collection<RoleEnum> roles) {
-	this.username = username;
-	this.password = BCryptManagerTool.passwordencoder().encode(password);
-	this.firstname = firstname;
-	this.lastname = lastname;
-	this.accountNonExpired = true;
-	this.accountNonLocked = true;
-	this.credentialsNonExpired = true;
-	this.enabled = true;
-	this.roles = roles;
-}
+    @NotNull
+    @Column(unique = true)
+    private String username;
 
-public Long getIdUser() {
-	return idUser;
-}
-public void setIdUser(Long idUser) {
-	this.idUser = idUser;
-}
-public String getUsername() {
-	return username;
-}
-public void setUsername(String username) {
-	this.username = username;
-}
-public String getFirstname() {
-	return firstname;
-}
-public void setFirstname(String firstname) {
-	this.firstname = firstname;
-}
-public String getLastname() {
-	return lastname;
-}
-public void setLastname(String lastname) {
-	this.lastname = lastname;
-}
-public Collection<RoleEnum> getRoles() {
-	return roles;
-}
-public void setRoles(Collection<RoleEnum> roles) {
-	this.roles = roles;
-}
-public boolean isAccountNonExpired() {
-	return accountNonExpired;
-}
-public void setAccountNonExpired(boolean accountNonExpired) {
-	this.accountNonExpired = accountNonExpired;
-}
-public boolean isAccountNonLocked() {
-	return accountNonLocked;
-}
-public void setAccountNonLocked(boolean accountNonLocked) {
-	this.accountNonLocked = accountNonLocked;
-}
-public boolean isCredentialsNonExpired() {
-	return credentialsNonExpired;
-}
-public void setCredentialsNonExpired(boolean credentialsNonExpired) {
-	this.credentialsNonExpired = credentialsNonExpired;
-}
-public boolean isEnabled() {
-	return enabled;
-}
-public void setEnabled(boolean enabled) {
-	this.enabled = enabled;
-}
-public String getPassword() {
-	return password;
-}
-@Override
-public Collection<? extends GrantedAuthority> getAuthorities() {
-	String roles =StringUtils.collectionToCommaDelimitedString(getRoles().stream().map(Enum::name).collect(Collectors.toList()));
-	return AuthorityUtils.commaSeparatedStringToAuthorityList(roles);
-}
+    @NotNull
+    private String password;
 
-public void setPassword(String password) {
-	if (!password.isEmpty()) {
-		this.password = BCryptManagerTool.passwordencoder().encode(password);
-}
-}
+    @NotNull
+    private String firstname;
+
+    @NotNull
+    private String lastname;
+
+    @ElementCollection(targetClass = RoleEnum.class, fetch = FetchType.EAGER)
+    @Cascade(value = CascadeType.REMOVE)
+    @JoinTable(
+            indexes = {@Index(name = "INDEX_USER_ROLE", columnList = "id_user")},
+            name = "roles",
+            joinColumns = @JoinColumn(name = "id_user")
+    )
+    @Column(name = "role", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Collection<RoleEnum> roles;
+
+   /* @Column(name = "account_non_expired")
+    private boolean accountNonExpired;
+    @Column(name = "account_non_locked")
+    private boolean accountNonLocked;
+    @Column(name = "credentials_non_expired")
+    private boolean credentialsNonExpired;
+    @Column(name = "enabled")
+    private boolean enabled;*/
+
+    public User() {
+        /*this.accountNonExpired = true;
+        this.accountNonLocked = true;
+        this.credentialsNonExpired = true;
+        this.enabled = true;*/
+        this.roles = Collections.singletonList(RoleEnum.AGENT);
+    }
+
+    public User(String username, String password, String firstname, String lastname, Collection<RoleEnum> roles) {
+        this.username = username;
+        this.password = BCryptManagerTool.passwordencoder().encode(password);
+        this.firstname = firstname;
+        this.lastname = lastname;
+        /*this.accountNonExpired = true;
+        this.accountNonLocked = true;
+        this.credentialsNonExpired = true;
+        this.enabled = true;*/
+        this.roles = roles;
+    }
+
+    public Long getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
+    }
+
+    public String getUsername() {
+        return username;
+    }
 
 	@Override
-	public String toString() {
-		return "User{" +
-				"idUser=" + idUser +
-				", username='" + username + '\'' +
-				", password='" + password + '\'' +
-				", firstname='" + firstname + '\'' +
-				", lastname='" + lastname + '\'' +
-				", roles=" + roles +
-				", accountNonExpired=" + accountNonExpired +
-				", accountNonLocked=" + accountNonLocked +
-				", credentialsNonExpired=" + credentialsNonExpired +
-				", enabled=" + enabled +
-				'}';
+	public boolean isAccountNonExpired() {
+		return false;
 	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return false;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return false;
+	}
+
+	public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public Collection<RoleEnum> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<RoleEnum> roles) {
+        this.roles = roles;
+    }
+
+
+
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        String roles = StringUtils.collectionToCommaDelimitedString(getRoles().stream().map(Enum::name).collect(Collectors.toList()));
+        return AuthorityUtils.commaSeparatedStringToAuthorityList(roles);
+    }
+
+    public void setPassword(String password) {
+        if (!password.isEmpty()) {
+            this.password = BCryptManagerTool.passwordencoder().encode(password);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "idUser=" + idUser +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", roles=" + roles ;
+    }
 }
