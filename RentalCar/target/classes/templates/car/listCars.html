@@ -27,6 +27,7 @@
 			<td><a th:href="@{${'/car/'+ car.carID +'/delete'}}"><input type="button" value="Supprimer"></a></td>
 		</tr>
 	</table>
+			<th:block th:insert="~{fragments/myTemplate :: body/script}"></th:block>
 
 </body>
 </html>

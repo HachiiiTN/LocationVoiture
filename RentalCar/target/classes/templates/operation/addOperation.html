@@ -7,16 +7,6 @@
     <th:block th:insert="~{fragments/myTemplate :: link}"></th:block>
 
 
-    <script type="text/javascript">
-        function triggerSubmit(){
-            let dropDownList = document.getElementById("ddCar")
-            let f = document.getElementById("carSelectForm")
-            let v = dropDownList.value
-            f.action += "/" +v
-            f.submit()
-        }
-
-    </script>
 </head>
 
 <body>
@@ -99,5 +89,17 @@
         </div>
     </div>
 </div>
+    <script type="text/javascript">
+        function triggerSubmit(){
+            let dropDownList = document.getElementById("ddCar")
+            let f = document.getElementById("carSelectForm")
+            let v = dropDownList.value
+            f.action += "/" +v
+            f.submit()
+        }
+
+    </script>
+			<th:block th:insert="~{fragments/myTemplate :: body/script}"></th:block>
+
 </body>
 </html>

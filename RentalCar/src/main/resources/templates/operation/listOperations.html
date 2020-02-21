@@ -26,13 +26,14 @@
 			<td th:text="${operation.typeGarantie}"></td>
 			<td th:text="${operation.fraisLocation}"></td>
 			<td th:text="${operation.typePayement}"></td>
-			<td th:text="${{operation.car}}"></td>
+			<td th:text="${operation.car}"></td>
 
 			<td><a th:href="@{${'/operation/'+ operation.operationID}}"><input type="button" value="Aperçu"></a></td>
 			<td><a th:href="@{${'/operation/'+ operation.operationID +'/update'}}"><input type="button" value="Modifier"></a></td>
 			<td><a th:href="@{${'/operation/'+ operation.operationID +'/delete'}}"><input type="button" value="Supprimer"></a></td>
 		</tr>
 	</table>
+			<th:block th:insert="~{fragments/myTemplate :: body/script}"></th:block>
 
 </body>
 </html>

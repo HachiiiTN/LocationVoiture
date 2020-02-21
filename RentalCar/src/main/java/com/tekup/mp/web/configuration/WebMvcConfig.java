@@ -64,7 +64,7 @@ public class WebMvcConfig extends WebSecurityConfigurerAdapter implements WebMvc
 
 		http
 				.authorizeRequests()
-				.antMatchers("/resources/**", "/registration").permitAll()
+				.antMatchers("/resources/**").permitAll()
 				.anyRequest().authenticated()
 				.and()
 				.formLogin()
