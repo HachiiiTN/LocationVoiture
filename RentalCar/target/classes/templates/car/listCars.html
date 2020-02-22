@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <th:block th:insert="~{fragments/myTemplate :: link}"></th:block>
 </head>
+
 <body>
 <div th:insert="~{fragments/myTemplate :: nav-bar-fragment}"></div>
 	<div class="container">
@@ -28,7 +29,8 @@
 			<td th:text="${car.etat}"></td>
 			<td><a th:href="@{${'/car/'+ car.carID}}"><input type="button" class="btn btn-primary" value="Aperçu"></a></td>
 			<td><a th:href="@{${'/car/'+ car.carID +'/update'}}"><input type="button" class="btn btn-success" value="Modifier"></a></td>
-			<td><a th:href="@{${'/car/'+ car.carID +'/delete'}}"><input type="button" class="btn btn-danger" value="Supprimer"></a></td>
+			<td><a th:href="@{${'/car/'+ car.carID +'/delete'}}"><input
+							type="button" class="btn btn-danger" value="Supprimer"></a></td>
 		</tr>
     </tbody>
   </table>

@@ -1,46 +1,52 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Liste des opérations</title>
-    <meta charset="UTF-8" />
-    <th:block th:insert="~{fragments/myTemplate :: link}"></th:block>
+<title>Liste des opérations</title>
+<meta charset="UTF-8" />
+<th:block th:insert="~{fragments/myTemplate :: link}"></th:block>
 </head>
-<body>
-<div th:insert="~{fragments/myTemplate :: nav-bar-fragment}"></div>
-	<div class="container">
-  <h2>Liste des opérations</h2>
-  <p>La liste des opérations: </p>            
-  <table class="table table-striped">
-    <thead>
-      <tr>
-			<th>Date Debut</th>
-			<th>Date Fin</th>
-			<th>Montant de garantie</th>
-			<th>Type de garantie</th>
-			<th>Frais de location</th>
-			<th>Type de payement</th>
-			<th>Voiture</th>
-			<th colspan=3>Actions</th>
-		</tr>
-    </thead>
-    <tbody>
-      <tr th:each="operation : ${operations}">
-			<td th:text="${{operation.dateDebut}}"></td>
-			<td th:text="${{operation.dateFin}}"></td>
-			<td th:text="${operation.montantGarantie}"></td>
-			<td th:text="${operation.typeGarantie}"></td>
-			<td th:text="${operation.fraisLocation}"></td>
-			<td th:text="${operation.typePayement}"></td>
-			<td th:text="${operation.car}"></td>
 
-			<td><a th:href="@{${'/operation/'+ operation.operationID}}"><input type="button" class="btn btn-primary" value="Aperçu"></a></td>
-			<td><a th:href="@{${'/operation/'+ operation.operationID +'/update'}}"><input type="button" class="btn btn-success" value="Modifier"></a></td>
-			<td><a th:href="@{${'/operation/'+ operation.operationID +'/delete'}}"><input type="button" class="btn btn-danger" value="Supprimer"></a></td>
-		</tr>
-    </tbody>
-  </table>
-</div>
-			<th:block th:insert="~{fragments/myTemplate :: body/script}"></th:block>
+<body>
+	<div th:insert="~{fragments/myTemplate :: nav-bar-fragment}"></div>
+	<div class="container">
+		<h2>Liste des opérations</h2>
+		<p>La liste des opérations:</p>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Date Debut</th>
+					<th>Date Fin</th>
+					<th>Montant de garantie</th>
+					<th>Type de garantie</th>
+					<th>Frais de location</th>
+					<th>Type de payement</th>
+					<th>Voiture</th>
+					<th colspan=3>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="operation : ${operations}">
+					<td th:text="${{operation.dateDebut}}"></td>
+					<td th:text="${{operation.dateFin}}"></td>
+					<td th:text="${operation.montantGarantie}"></td>
+					<td th:text="${operation.typeGarantie}"></td>
+					<td th:text="${operation.fraisLocation}"></td>
+					<td th:text="${operation.typePayement}"></td>
+					<td th:text="${operation.car}"></td>
+					<td><a th:href="@{${'/operation/'+ operation.operationID}}"><input
+							type="button" class="btn btn-primary" value="Aperçu"></a></td>
+					<td><a
+						th:href="@{${'/operation/'+ operation.operationID +'/update'}}"><input
+							type="button" class="btn btn-success" value="Modifier"></a></td>
+					<td><a
+						th:href="@{${'/operation/'+ operation.operationID +'/delete'}}"><input
+							type="button" class="btn btn-danger" value="Supprimer"></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<th:block th:insert="~{fragments/myTemplate :: body/script}"></th:block>
 
 </body>
 </html>

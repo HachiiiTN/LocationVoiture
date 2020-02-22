@@ -1,43 +1,44 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Voiture</title>
-    <meta charset="UTF-8">
-    <th:block th:insert="~{fragments/myTemplate :: link}"></th:block>
+<title>Voiture</title>
+<meta charset="UTF-8">
+<th:block th:insert="~{fragments/myTemplate :: link}"></th:block>
 </head>
+
 <body>
- <div th:insert="~{fragments/myTemplate :: nav-bar-fragment}"></div>
-	
+	<div th:insert="~{fragments/myTemplate :: nav-bar-fragment}"></div>
+
 	<div class="container">
-  <h2>Voiture</h2>
-  <p>Une Voiture: </p>            
-  <table class="table table-striped">
-    <thead>
-     <tr>
-			<th>ID</th>
-			<th>Matricule</th>
-			<th>Marque</th>
-			<th>Modèle</th>
-			<th>Date de Mise en Circulation</th>
-			<th>Prix</th>
-			<th>Disponibilité</th>
-		</tr>
-    </thead>
-    <tbody>
-      <tr>
-			<td th:text="${car.carID}"></td>
-			<td th:text="${car.immatriculation}"></td>
-			<td th:text="${car.marque}"></td>
-			<td th:text="${car.modele}"></td>
-			<td th:text="${{car.dateMiseCirculation}}"></td>
-			<td th:text="${car.prixLocation}"></td>
-			<td th:text="${car.etat}"></td>
-		</tr>
-    </tbody>
-  </table>
-</div>
-	
-			<th:block th:insert="~{fragments/myTemplate :: body/script}"></th:block>
+		<h2>Voiture</h2>
+		<p>Une Voiture:</p>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Matricule</th>
+					<th>Marque</th>
+					<th>Modèle</th>
+					<th>Date de Mise en Circulation</th>
+					<th>Prix</th>
+					<th>Disponibilité</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td th:text="${car.carID}"></td>
+					<td th:text="${car.immatriculation}"></td>
+					<td th:text="${car.marque}"></td>
+					<td th:text="${car.modele}"></td>
+					<td th:text="${{car.dateMiseCirculation}}"></td>
+					<td th:text="${car.prixLocation}"></td>
+					<td th:text="${car.etat}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<th:block th:insert="~{fragments/myTemplate :: body/script}"></th:block>
 
 </body>
 </html>

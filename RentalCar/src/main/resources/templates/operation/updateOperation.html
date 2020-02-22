@@ -1,119 +1,91 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-
-    <meta charset="UTF-8"/>
-    <title>Modifier une opération</title>
-    <th:block th:insert="~{fragments/myTemplate :: link}"></th:block>
+<meta charset="UTF-8" />
+<title>Modifier une opération</title>
+<th:block th:insert="~{fragments/myTemplate :: link}"></th:block>
 </head>
 
 <body>
-<div th:insert="~{fragments/myTemplate :: nav-bar-fragment}"></div>
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <h2 class="text-info">Modifier une opération:</h2>
-            <form th:object="${operationForm}" th:action="@{${'/operation/'+ operationForm.operationID + '/update'}}"
-                  method="POST">
-                <input type="hidden" th:field="*{operationID}" readonly>
-                <input type="hidden" th:field="*{car}" readonly>
-<<<<<<< HEAD
-                <div class="row">
+	<div th:insert="~{fragments/myTemplate :: nav-bar-fragment}"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="text-info">Modifier une opération:</h2>
+				<form th:object="${operationForm}"
+					th:action="@{${'/operation/'+ operationForm.operationID + '/update'}}"
+					method="POST">
+					<input type="hidden" th:field="*{operationID}" readonly> <input
+						type="hidden" th:field="*{car}" readonly>
+					<div class="row">
 						<div class="col-sm-2">Date Debut</div>
 						<div class="col-sm-4">
-							<input type="date" class="form-control" placeholder="Date Debut" th:field="*{dateDebut}">  
+							<input type="date" class="form-control" placeholder="Date Debut"
+								th:field="*{dateDebut}" required>
 						</div>
-					</div><br />
-					 <div class="row">
+					</div>
+					<br />
+					<div class="row">
 						<div class="col-sm-2">Date Fin</div>
 						<div class="col-sm-4">
-							<input type="date" class="form-control" placeholder="Date Fin" th:field="*{dateFin}">  
+							<input type="date" class="form-control" placeholder="Date Fin"
+								th:field="*{dateFin}" required>
 						</div>
-					</div><br />
-					 <div class="row">
+					</div>
+					<br />
+					<div class="row">
 						<div class="col-sm-2">Montant de garantie</div>
 						<div class="col-sm-4">
-							<input type="number" class="form-control" placeholder="Montant de garantie" th:field="*{montantGarantie}">  
+							<input type="number" class="form-control"
+								placeholder="Montant de garantie" th:field="*{montantGarantie}"
+								required>
 						</div>
-					</div><br />
+					</div>
+					<br />
 					<div class="row">
 						<div class="col-sm-2">Type de garantie</div>
 						<div class="col-sm-4">
-							<input type="text" class="form-control" placeholder="Type de garantie" th:field="*{typeGarantie}">  
+							<input type="text" class="form-control"
+								placeholder="Type de garantie" th:field="*{typeGarantie}"
+								required>
 						</div>
-					</div><br />
+					</div>
+					<br />
 					<div class="row">
 						<div class="col-sm-2">Frais de location</div>
 						<div class="col-sm-4">
-							<input type="number" class="form-control" placeholder="Frais de location" min="0" th:field="*{fraisLocation}">  
+							<input type="number" class="form-control"
+								placeholder="Frais de location" min="0"
+								th:field="*{fraisLocation}" required>
 						</div>
-					</div><br />
+					</div>
+					<br />
 					<div class="row">
 						<div class="col-sm-2">Type de payement</div>
 						<div class="col-sm-4">
-					<select th:field="*{typePayement}" class="browser-default custom-select">
-	  <option th:value="'Chèque'" th:text="Chèque"></option>
-  <option th:value="'Espèce'" th:text="Espèce"></option>
-
-</select>
-</div>
-					</div><br />
+							<select th:field="*{typePayement}"
+								class="browser-default custom-select" required>
+								<option th:value="'Chèque'" th:text="Chèque"></option>
+								<option th:value="'Espèce'" th:text="Espèce"></option>
+							</select>
+						</div>
+					</div>
+					<br />
 					<div class="row">
 						<div class="col-sm-2">Liste des voitures non réservées</div>
 						<div class="col-sm-4">
-							<input type="text" class="form-control" th:value="${operationCar}" readonly>  
+							<input type="text" class="form-control"
+								th:value="${operationCar}" readonly>
 						</div>
-					</div><br />
-										<button type="submit" class="btn btn-success">Modifier</button>
-                    
-                   
-=======
-                <table>
-                    <tr>
-                        <th align="left">Date Debut</th>
-                        <td><input type="date" th:field="*{dateDebut}" required></td>
-                    </tr>
-                    <tr>
-                        <th align="left">Date Fin</th>
-                        <td><input type="date" th:field="*{dateFin}" required></td>
-                    </tr>
-                    <tr>
-                        <th align="left">Montant de garantie</th>
-                        <td><input type="number" th:field="*{montantGarantie}" required></td>
-                    </tr>
-                    <tr>
-                        <th align="left">Type de garantie</th>
-                        <td><input type="text" th:field="*{typeGarantie}" required></td>
-                    </tr>
-                    <tr>
-                        <th align="left">Frais de location</th>
-                        <td><input type="number" min="0" th:field="*{fraisLocation}" required></td>
-                    </tr>
-                    <tr>
-                        <th align="left">Type de payement</th>
-                        <td>
-                            <select th:field="*{typePayement}" required>
-                                <option th:value="'Chèque'" th:text="Chèque"></option>
-                                <option th:value="'Espèce'" th:text="Espèce"></option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th align="left">Voitures</th>
-                        <td>
-                            <input type="text" th:value="${operationCar}" readonly>
-                        </td>
-                    </tr>
-                    <tr colspan=2>
-                        <td><input type="submit" value="Modifier" width="100%"></td>
-                    </tr>
-                </table>
->>>>>>> branch 'master' of https://github.com/HachiiiTN/LocationVoiture.git
-            </form>
-        </div>
-    </div>
-</div>
-			<th:block th:insert="~{fragments/myTemplate :: body/script}"></th:block>
+					</div>
+					<br />
+					<button type="submit" class="btn btn-success">Modifier</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<th:block th:insert="~{fragments/myTemplate :: body/script}"></th:block>
 
 </body>
 </html>
