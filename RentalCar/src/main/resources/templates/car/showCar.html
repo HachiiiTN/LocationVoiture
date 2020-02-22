@@ -7,10 +7,13 @@
 </head>
 <body>
  <div th:insert="~{fragments/myTemplate :: nav-bar-fragment}"></div>
- 	<h3>Voiture</h3>
- 
-	<table border=1>
-		<tr>
+	
+	<div class="container">
+  <h2>Voiture</h2>
+  <p>Une Voiture: </p>            
+  <table class="table table-striped">
+    <thead>
+     <tr>
 			<th>ID</th>
 			<th>Matricule</th>
 			<th>Marque</th>
@@ -19,7 +22,9 @@
 			<th>Prix</th>
 			<th>Disponibilité</th>
 		</tr>
-		<tr>
+    </thead>
+    <tbody>
+      <tr>
 			<td th:text="${car.carID}"></td>
 			<td th:text="${car.immatriculation}"></td>
 			<td th:text="${car.marque}"></td>
@@ -28,7 +33,10 @@
 			<td th:text="${car.prixLocation}"></td>
 			<td th:text="${car.etat}"></td>
 		</tr>
-	</table>
+    </tbody>
+  </table>
+</div>
+	
 			<th:block th:insert="~{fragments/myTemplate :: body/script}"></th:block>
 
 </body>

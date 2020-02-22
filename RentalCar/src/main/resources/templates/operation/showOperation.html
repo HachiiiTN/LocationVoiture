@@ -8,10 +8,12 @@
 </head>
 <body>
  <div th:insert="~{fragments/myTemplate :: nav-bar-fragment}"></div>
- 	<h3>opération</h3>
- 
-	<table border=1>
-		<tr>
+	<div class="container">
+  <h2>Opération</h2>
+  <p>Une opération: </p>            
+  <table class="table table-striped">
+    <thead>
+     <tr>
 			<th>Date Debut</th>
 			<th>Date Fin</th>
 			<th>Montant de garantie</th>
@@ -20,7 +22,9 @@
 			<th>Type de payement</th>
 			<th>Voiture</th>
 		</tr>
-		<tr>
+    </thead>
+    <tbody>
+     <tr>
 			<td th:text="${{operation.dateDebut}}"></td>
 			<td th:text="${{operation.dateFin}}"></td>
 			<td th:text="${operation.montantGarantie}"></td>
@@ -29,7 +33,9 @@
 			<td th:text="${operation.typePayement}"></td>
 			<td th:text="${operation.car}"></td>
 		</tr>
-	</table>
+    </tbody>
+  </table>
+</div>
 			<th:block th:insert="~{fragments/myTemplate :: body/script}"></th:block>
 
 </body>
