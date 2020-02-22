@@ -1,5 +1,7 @@
 package com.tekup.mp.web.controllers;
 
+
+import com.tekup.mp.dao.GLOBAL.AppRepo;
 import com.tekup.mp.jpa.entities.User;
 import com.tekup.mp.metier.servicesImpl.UserServiceImpl;
 import com.tekup.mp.web.model.requests.UserForm;
@@ -20,6 +22,7 @@ public class UserController {
     @GetMapping("/new")
     public String newUserForm(Model model) {
         model.addAttribute(new User());
+        model.addAttribute("role", String.valueOf(AppRepo.getUserRole()));
         return "user/addUser";
     }
 
@@ -32,17 +35,20 @@ public class UserController {
     @GetMapping("/all")
     public String showAllUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());
+        model.addAttribute("role", String.valueOf(AppRepo.getUserRole()));
         return "user/listUsers";
     }
 
     @GetMapping("/{id}")
     public String showUser(@PathVariable Long id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
+        model.addAttribute("role", String.valueOf(AppRepo.getUserRole()));
         return "user/showUser";
     }
 
     @GetMapping("/{id}/update")
     public String showUpdateUser(@PathVariable Long id, Model model) {
+        model.addAttribute("role", String.valueOf(AppRepo.getUserRole()));
         if (id > 0) {
             for (User user : userService.getAllUsers()) {
                 if (user.getIdUser() == id) {
