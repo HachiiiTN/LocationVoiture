@@ -62,7 +62,6 @@ public class User implements UserDetails {
 
 
     public User() {
-       
         this.roles = Collections.singletonList(RoleEnum.AGENT);
     }
 

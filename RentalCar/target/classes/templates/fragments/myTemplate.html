@@ -51,19 +51,20 @@
                     <a class="dropdown-item" th:href="@{/operation/all}">Afficher</a>
                 </div>
             </div>
-            <div class="dropdown show">
-                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                   id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false"
-                   style="background-color: #007bff !important; border-color: #007bff !important;">Agent
-                </a>
 
+            <th:block th:if="${role} == 'ADMINISTARTOR'">
+                <div class="dropdown show">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                       id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false"
+                       style="background-color: #007bff !important; border-color: #007bff !important;">Agent
+                    </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" th:href="@{#}">Ajouter</a>
-                        <a class="dropdown-item" th:href="@{#}">Afficher</a>
+                        <a class="dropdown-item" th:href="@{/user/new}">Ajouter</a>
+                        <a class="dropdown-item" th:href="@{/user/all}">Afficher</a>
                     </div>
-
-            </div>
+                </div>
+            </th:block>
 
         </ul>
         <ul class="nav navbar-nav navbar-right">

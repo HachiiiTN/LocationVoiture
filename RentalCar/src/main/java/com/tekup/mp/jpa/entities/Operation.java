@@ -20,7 +20,6 @@ public class Operation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long operationID;
 
-	@NotNull
 	@OneToOne
 	private Car car;
 

@@ -58,8 +58,16 @@ public class OperationController {
                     Date newDateDebut = newOperation.getDateDebut();
                     Date newDateFin = newOperation.getDateFin();
 
-                    if ( (newDateDebut.compareTo(operationDateDebut) >= 0 && operationDateFin.compareTo(newDateFin) >= 0)
-                            || (operationDateDebut.compareTo(newDateDebut) <= 0 && operationDateFin.compareTo(newDateFin) >= 0)
+                    if (
+                        // new operation date between operationDATDEB and DATFIN
+                            (newDateDebut.compareTo(operationDateDebut) >= 0 && newDateDebut.compareTo(operationDateFin) <= 0 && operationDateFin.compareTo(newDateFin) >= 0 && newDateFin.compareTo(operationDateDebut) >= 0)
+                                    // newDateDebut between operationDATDEB and operationDATFIN AND newDateFin after operationDATDEB and after operationDATFIN
+                                    || (newDateDebut.compareTo(operationDateDebut) >= 0 && newDateDebut.compareTo(operationDateFin) <= 0 && /*newDateFin.compareTo(operationDateDebut) >= 0 &&*/ newDateFin.compareTo(operationDateFin) <= 0)
+                                    // newDateDebut before operationDATDEB and before operationDATFIN AND
+                                    || (newDateDebut.compareTo(operationDateDebut) <= 0 && newDateDebut.compareTo(operationDateFin) <= 0 && /*newDateFin.compareTo(operationDateDebut) >= 0 &&*/ newDateFin.compareTo(operationDateDebut) >= 0)
+                                    // newDateDebut between operationDATDEB and operationDATFIN AND newDateFin after operationDATFIN
+                                    || (newDateDebut.compareTo(operationDateDebut) >= 0 && newDateDebut.compareTo(operationDateFin) <= 0 && newDateFin.compareTo(operationDateFin) >= 0)
+
                     ) {
                         listCar.remove(operation.getCar());
                     }

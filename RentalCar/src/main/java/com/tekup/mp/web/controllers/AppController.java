@@ -14,7 +14,8 @@ public class AppController {
     public String welcomePage(Model model) {
         model.addAttribute("title", "Homepage");
         model.addAttribute("message", "Welcome!");
-        //model.addAttribute("role", USER_ROLE);
+        model.addAttribute("role", "ADMINISTARTOR");
+        //model.addAttribute("role", "AGENT");
         return "index";
     }
 

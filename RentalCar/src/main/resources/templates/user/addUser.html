@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Ajouter un agent</title>
+    <th:block th:insert="~{fragments/myTemplate :: link}"></th:block>
+
+</head>
+
+<body>
+<div th:insert="~{fragments/myTemplate :: nav-bar-fragment}"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-info">Message : <span th:utext="${message}"></span></h2>
+
+
+            <form th:object="${user}" th:action="@{/user/new}" method="POST">
+                <table>
+                    <tr>
+                        <th align="left">Username</th>
+                        <td><input type="text" th:field="*{username}" required></td>
+                    </tr>
+                    <tr>
+                        <th align="left">First Name</th>
+                        <td><input type="text" th:field="*{firstname}" required></td>
+                    </tr>
+                    <tr>
+                        <th align="left">Last Name</th>
+                        <td><input type="text" th:field="*{lastname}" required></td>
+                    </tr>
+                    <tr>
+                        <th align="left">Role</th>
+                        <td>
+                            <select th:field="*{roles}" required>
+                                <option th:value="'AGENT'" th:text="Agent"></option>
+                                <option th:value="'ADMINISTARTOR'" th:text="Administrator"></option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th align="left">Password</th>
+                        <td><input type="password" min=4 th:field="*{password}" required></td>
+                    </tr>
+                    <tr colspan=2>
+                        <td><input type="submit" value="Ajouter user" width="100%"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<th:block th:insert="~{fragments/myTemplate :: body/script}"></th:block>
+
+</body>
+</html>
