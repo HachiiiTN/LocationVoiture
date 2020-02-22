@@ -1,6 +1,6 @@
 package com.tekup.mp.web.controllers;
 
-import com.tekup.mp.dao.GLOBAL._public;
+import com.tekup.mp.dao.GLOBAL.AppRepo;
 import com.tekup.mp.web.model.requests.OperationForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,7 +34,7 @@ public class OperationController {
         model.addAttribute(new Operation());
         model.addAttribute("error", OPERATION_ERROR);
         model.addAttribute("condition", "stepOne");
-        model.addAttribute("role", String.valueOf(_public.getUserRole()));
+        model.addAttribute("role", String.valueOf(AppRepo.getUserRole()));
         return "operation/addOperation";
     }
 
@@ -48,7 +48,7 @@ public class OperationController {
     @GetMapping("/{id}/car")
     public String addCarSelection(@PathVariable Long id, Model model) {
         List<Car> listCar = new ArrayList<>();
-        model.addAttribute("role", String.valueOf(_public.getUserRole()));
+        model.addAttribute("role", String.valueOf(AppRepo.getUserRole()));
 
         Operation newOperation = operationServiceImpl.getOperationById(id);
         for (Car car : carServiceImpl.getAllCars()) {
@@ -109,20 +109,20 @@ public class OperationController {
     @GetMapping("/{id}")
     public String showOperation(@PathVariable Long id, Model model) {
         model.addAttribute("operation", operationServiceImpl.getOperationById(id));
-        model.addAttribute("role", String.valueOf(_public.getUserRole()));
+        model.addAttribute("role", String.valueOf(AppRepo.getUserRole()));
         return "operation/showOperation";
     }
 
     @GetMapping("/all")
     public String showAllOperations(Model model) {
         model.addAttribute("operations", operationServiceImpl.getAllOperations());
-        model.addAttribute("role", String.valueOf(_public.getUserRole()));
+        model.addAttribute("role", String.valueOf(AppRepo.getUserRole()));
         return "operation/listOperations";
     }
 
     @GetMapping("/{id}/update")
     public String showUpdateOperation(@PathVariable Long id, Model model) {
-        model.addAttribute("role", String.valueOf(_public.getUserRole()));
+        model.addAttribute("role", String.valueOf(AppRepo.getUserRole()));
         if (id > 0) {
             for (Operation operation : operationServiceImpl.getAllOperations()) {
                 if (operation.getOperationID() == id) {

@@ -1,6 +1,6 @@
 package com.tekup.mp.dao.GLOBAL;
 
-public class _public {
+public class AppRepo {
     static Long userID;
     static String userRole;
 
@@ -9,7 +9,7 @@ public class _public {
     }
 
     public static void setUserID(Long userID) {
-        _public.userID = userID;
+        AppRepo.userID = userID;
     }
 
     public static String getUserRole() {
@@ -17,6 +17,6 @@ public class _public {
     }
 
     public static void setUserRole(String userRole) {
-        _public.userRole = userRole;
+        AppRepo.userRole = userRole;
     }
 }
