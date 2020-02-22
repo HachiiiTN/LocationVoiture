@@ -1,7 +1,6 @@
 package com.tekup.mp.web.controllers;
 
 
-import com.tekup.mp.dao.GLOBAL._public;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +14,6 @@ public class AppController {
     public String welcomePage(Model model) {
         model.addAttribute("title", "Homepage");
         model.addAttribute("message", "Welcome!");
-        model.addAttribute("role", String.valueOf(_public.getUserRole()));
         //System.err.println(String.valueOf(_public.getUserRole()));
         return "index";
     }

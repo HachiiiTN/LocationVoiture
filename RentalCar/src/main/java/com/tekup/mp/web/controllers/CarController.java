@@ -1,6 +1,5 @@
 package com.tekup.mp.web.controllers;
 
-import com.tekup.mp.dao.GLOBAL._public;
 import com.tekup.mp.web.model.requests.CarForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +22,6 @@ public class CarController {
     @GetMapping("/new")
     public String newCarForm(Model model) {
         model.addAttribute(new Car());
-        model.addAttribute("role", String.valueOf(_public.getUserRole()));
         return "car/addCar";
     }
 
@@ -39,7 +37,6 @@ public class CarController {
     @GetMapping("/all")
     public String showAllCars(Model model) {
         model.addAttribute("cars", carServiceImpl.getAllCars());
-        model.addAttribute("role", String.valueOf(_public.getUserRole()));
         return "car/listCars";
     }
 
@@ -47,13 +44,11 @@ public class CarController {
     @GetMapping("/{id}")
     public String showCar(@PathVariable Long id, Model model) {
         model.addAttribute("car", carServiceImpl.getCarById(id));
-        model.addAttribute("role", String.valueOf(_public.getUserRole()));
         return "car/showCar";
     }
 
     @GetMapping("/{id}/update")
     public String showUpdateCar(@PathVariable Long id, Model model) {
-        model.addAttribute("role", String.valueOf(_public.getUserRole()));
         if (id > 0) {
             for (Car car : carServiceImpl.getAllCars()) {
                 if (car.getCarID() == id) {

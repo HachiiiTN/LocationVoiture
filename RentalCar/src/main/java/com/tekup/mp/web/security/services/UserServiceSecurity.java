@@ -1,6 +1,5 @@
 package com.tekup.mp.web.security.services;
 
-import com.tekup.mp.dao.GLOBAL._public;
 import com.tekup.mp.jpa.enums.RoleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -37,8 +36,6 @@ public class UserServiceSecurity implements UserDetailsService {
             throw new UsernameNotFoundException("No user present with username : " + username);
         } else {
             Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-            _public.setUserID(user.getIdUser());
-            _public.setUserRole(user.getRoles().toArray()[0].toString());
             return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
         }
     }
