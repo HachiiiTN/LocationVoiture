@@ -12,20 +12,21 @@ import com.tekup.mp.metier.servicesImpl.CarServiceImpl;
 import javax.validation.Valid;
 
 @Controller()
+@RequestMapping("/car")
 public class CarController {
 
     @Autowired
     private CarServiceImpl carServiceImpl;
 
     // Show add new car form
-    @GetMapping("/car/new")
+    @GetMapping("/new")
     public String newCarForm(Model model) {
         model.addAttribute(new Car());
         return "car/addCar";
     }
 
     // Ajouter une voiture dans la base et afficher l'inforamtions
-    @PostMapping("/car/new")
+    @PostMapping("/new")
     public String saveCarController(Car car) {
         car.setEtat("Disponible");
         carServiceImpl.saveCar(car);
@@ -33,20 +34,20 @@ public class CarController {
     }
 
     // Afficher toutes les voitures
-    @GetMapping("/car/all")
+    @GetMapping("/all")
     public String showAllCars(Model model) {
         model.addAttribute("cars", carServiceImpl.getAllCars());
         return "car/listCars";
     }
 
     // Afficher l'information de la voiture avec un id
-    @GetMapping("/car/{id}")
+    @GetMapping("/{id}")
     public String showCar(@PathVariable Long id, Model model) {
         model.addAttribute("car", carServiceImpl.getCarById(id));
         return "car/showCar";
     }
 
-    @GetMapping("/car/{id}/update")
+    @GetMapping("/{id}/update")
     public String showUpdateCar(@PathVariable Long id, Model model) {
         if (id > 0) {
             for (Car car : carServiceImpl.getAllCars()) {
@@ -67,7 +68,7 @@ public class CarController {
         return "redirect:/car/all";
     }
 
-    @PostMapping("/car/{id}/update")
+    @PostMapping("/{id}/update")
     public String updateCar(@RequestParam(value = "carID", required = true) Long id, @Valid @ModelAttribute("carForm") CarForm carForm) {
         for (Car car : carServiceImpl.getAllCars()) {
             if (car.getCarID() == id) {
@@ -87,7 +88,7 @@ public class CarController {
     }
 
     // Supprimer une voiture
-    @GetMapping("/car/{id}/delete")
+    @GetMapping("/{id}/delete")
     public String deleteCar(@PathVariable Long id) {
         carServiceImpl.deleteCarById(id);
         return "redirect:/car/all";

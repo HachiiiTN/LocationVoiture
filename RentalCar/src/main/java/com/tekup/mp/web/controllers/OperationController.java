@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
+@RequestMapping("/operation")
 public class OperationController {
 
     private static String OPERATION_ERROR = "";
@@ -27,7 +28,7 @@ public class OperationController {
     @Autowired
     private CarServiceImpl carServiceImpl;
 
-    @GetMapping("/operation/new")
+    @GetMapping("/new")
     public String newOperationForm(Model model) {
         model.addAttribute(new Operation());
         model.addAttribute("error", OPERATION_ERROR);
@@ -35,14 +36,14 @@ public class OperationController {
         return "operation/addOperation";
     }
 
-    @PostMapping("/operation/new")
+    @PostMapping("/new")
     public String addOperation(Operation operation) {
         OPERATION_ERROR = "";
         operationServiceImpl.saveOperation(operation);
         return "redirect:/operation/" + operation.getOperationID() + "/car";
     }
 
-    @GetMapping("/operation/{id}/car")
+    @GetMapping("/{id}/car")
     public String addCarSelection(@PathVariable Long id, Model model) {
         List<Car> listCar = new ArrayList<>();
         Operation newOperation = operationServiceImpl.getOperationById(id);
@@ -88,7 +89,7 @@ public class OperationController {
         }
     }
 
-    @PostMapping("/operation/{id}/car/{idCar}")
+    @PostMapping("/{id}/car/{idCar}")
     public String addCarIntoOperation(@PathVariable Long id, @PathVariable Long idCar) {
         Operation operation = operationServiceImpl.getOperationById(id);
         operation.setCar(carServiceImpl.getCarById(idCar));
@@ -102,19 +103,19 @@ public class OperationController {
         return "redirect:/operation/" + operation.getOperationID();
     }
 
-    @GetMapping("/operation/{id}")
+    @GetMapping("/{id}")
     public String showOperation(@PathVariable Long id, Model model) {
         model.addAttribute("operation", operationServiceImpl.getOperationById(id));
         return "operation/showOperation";
     }
 
-    @GetMapping("/operation/all")
+    @GetMapping("/all")
     public String showAllOperations(Model model) {
         model.addAttribute("operations", operationServiceImpl.getAllOperations());
         return "operation/listOperations";
     }
 
-    @GetMapping("/operation/{id}/update")
+    @GetMapping("/{id}/update")
     public String showUpdateOperation(@PathVariable Long id, Model model) {
         if (id > 0) {
             for (Operation operation : operationServiceImpl.getAllOperations()) {
@@ -140,7 +141,7 @@ public class OperationController {
         return "redirect:/operation/all";
     }
 
-    @PostMapping("/operation/{id}/update")
+    @PostMapping("/{id}/update")
     public String updateOperation(@PathVariable Long id, @Valid @ModelAttribute("operationForm") OperationForm operationForm) {
         System.err.println(id);
         for (Operation operation : operationServiceImpl.getAllOperations()) {
@@ -163,7 +164,7 @@ public class OperationController {
         return "redirect:/operation/all";
     }
 
-    @GetMapping("/operation/{id}/delete")
+    @GetMapping("/{id}/delete")
     public String deleteOperation(@PathVariable Long id) {
         operationServiceImpl.deleteOperationById(id);
         return "redirect:/operation/all";
