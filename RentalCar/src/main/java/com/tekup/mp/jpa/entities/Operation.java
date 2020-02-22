@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -19,24 +20,34 @@ public class Operation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long operationID;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date dateDebut;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date dateFin;
-	private double montantGarantie;
-	private String typeGarantie;
-	private double fraisLocation;
-	private String typePayement;
-
+	@NotNull
 	@OneToOne
 	private Car car;
+
+	@NotNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date dateDebut;
+	@NotNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date dateFin;
+
+	@NotNull
+	private double montantGarantie;
+
+	@NotNull
+	private String typeGarantie;
+
+	@NotNull
+	private double fraisLocation;
+
+	@NotNull
+	private String typePayement;
 
 	public Operation() {
 		super();
 	}
 
-	public Operation(Date dateDebut, Date dateFin, double montantGarantie, String typeGarantie,
-			double fraisLocation, String typePayement) {
+	public Operation(Date dateDebut, Date dateFin, double montantGarantie, String typeGarantie, double fraisLocation, String typePayement) {
 		super();
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;

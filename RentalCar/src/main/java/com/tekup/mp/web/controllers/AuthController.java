@@ -10,15 +10,11 @@ public class AuthController {
 
     @GetMapping("/login")
     public String login(Model model) {
-
-        System.err.println("reached here");
         return "login";
     }
 
     @PostMapping("/logout")
     public String logout(Model model) {
-
-        System.err.println("reached here");
         return "login";
     }
 

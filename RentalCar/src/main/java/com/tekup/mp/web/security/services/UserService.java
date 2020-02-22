@@ -16,6 +16,7 @@ import java.util.Set;
 
 @Service("userService")
 public class UserService implements UserDetailsService {
+
     private final UserRepository userRepository;
 
     @Autowired
@@ -32,11 +33,8 @@ public class UserService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("No user present with username : " + username);
         } else {
-            //return user;
-
             Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
             return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
-
         }
     }
 }
