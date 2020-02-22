@@ -2,7 +2,7 @@ package com.tekup.mp.metier.services;
 
 import com.tekup.mp.jpa.entities.User;
 
-public interface UserInterface {
+public interface IUserService {
 
 	Iterable<User> getAllUsers();
 	

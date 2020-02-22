@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.tekup.mp.jpa.entities.Car;
-import com.tekup.mp.metier.servicesImpl.CarService;
+import com.tekup.mp.metier.servicesImpl.CarServiceImpl;
 
 import javax.validation.Valid;
 
@@ -15,7 +15,7 @@ import javax.validation.Valid;
 public class CarController {
 
     @Autowired
-    private CarService carService;
+    private CarServiceImpl carServiceImpl;
 
     // Show add new car form
     @GetMapping("/car/new")
@@ -28,28 +28,28 @@ public class CarController {
     @PostMapping("/car/new")
     public String saveCarController(Car car) {
         car.setEtat("Disponible");
-        carService.saveCar(car);
+        carServiceImpl.saveCar(car);
         return "redirect:/car/" + car.getCarID();
     }
 
     // Afficher toutes les voitures
     @GetMapping("/car/all")
     public String showAllCars(Model model) {
-        model.addAttribute("cars", carService.getAllCars());
+        model.addAttribute("cars", carServiceImpl.getAllCars());
         return "car/listCars";
     }
 
     // Afficher l'information de la voiture avec un id
     @GetMapping("/car/{id}")
     public String showCar(@PathVariable Long id, Model model) {
-        model.addAttribute("car", carService.getCarById(id));
+        model.addAttribute("car", carServiceImpl.getCarById(id));
         return "car/showCar";
     }
 
     @GetMapping("/car/{id}/update")
     public String showUpdateCar(@PathVariable Long id, Model model) {
         if (id > 0) {
-            for (Car car : carService.getAllCars()) {
+            for (Car car : carServiceImpl.getAllCars()) {
                 if (car.getCarID() == id) {
                     CarForm carForm = new CarForm();
                     carForm.setCarID(car.getCarID());
@@ -69,7 +69,7 @@ public class CarController {
 
     @PostMapping("/car/{id}/update")
     public String updateCar(@RequestParam(value = "carID", required = true) Long id, @Valid @ModelAttribute("carForm") CarForm carForm) {
-        for (Car car : carService.getAllCars()) {
+        for (Car car : carServiceImpl.getAllCars()) {
             if (car.getCarID() == id) {
                 car.setCarID(carForm.getCarID());
                 car.setImmatriculation(carForm.getImmatriculation());
@@ -79,7 +79,7 @@ public class CarController {
                 car.setPrixLocation(carForm.getPrixLocation());
                 car.setEtat(carForm.getEtat());
 
-                carService.saveCar(car);
+                carServiceImpl.saveCar(car);
                 return "redirect:/car/" + car.getCarID();
             }
         }
@@ -89,7 +89,7 @@ public class CarController {
     // Supprimer une voiture
     @GetMapping("/car/{id}/delete")
     public String deleteCar(@PathVariable Long id) {
-        carService.deleteCarById(id);
+        carServiceImpl.deleteCarById(id);
         return "redirect:/car/all";
     }
 }

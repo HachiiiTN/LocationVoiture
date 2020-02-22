@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8" />
-<title>Ajouter un agent</title>
+<title>Modifier un agent</title>
 <th:block th:insert="~{fragments/myTemplate :: link}"></th:block>
 </head>
 
@@ -11,8 +11,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="text-info">Ajouter un User:</h2>
-				<form th:object="${user}" th:action="@{/user/new}" method="POST">
+				<h2 class="text-info">Modifier Agent</h2>
+				<form th:object="${userForm}" th:action="@{${'/user/'+ userForm.idUser + '/update'}}" method="POST">
+					<input type="hidden" th:field="*{idUser}" readonly>
 					<div class="row">
 						<div class="col-sm-2">Username</div>
 						<div class="col-sm-4">

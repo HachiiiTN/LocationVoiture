@@ -46,18 +46,16 @@ public class UserController {
         if (id > 0) {
             for (User user : userService.getAllUsers()) {
                 if (user.getIdUser() == id) {
-                    /*CarForm carForm = new CarForm();
-                    carForm.setCarID(car.getCarID());
-                    carForm.setImmatriculation(car.getImmatriculation());
-                    carForm.setMarque(car.getMarque());
-                    carForm.setModele(car.getModele());
-                    carForm.setDateMiseCirculation(car.getDateMiseCirculation());
-                    carForm.setPrixLocation(car.getPrixLocation());
-                    carForm.setEtat(car.getEtat());
-                    model.addAttribute("carForm", carForm);
+                    UserForm userForm = new UserForm();
+                    userForm.setIdUser(user.getIdUser());
+                    userForm.setUsername(user.getUsername());
+                    userForm.setFirstname(user.getFirstname());
+                    userForm.setLastname(user.getLastname());
+                    userForm.setRoles(user.getRoles());
+                    userForm.setPassword(user.getPassword());
+                    model.addAttribute("userForm", userForm);
 
-                     */
-                    return "car/updateUser";
+                    return "user/updateUser";
                 }
             }
         }
@@ -68,19 +66,16 @@ public class UserController {
     public String updateUser(@PathVariable Long id, @Valid @ModelAttribute("userForm") UserForm userForm) {
         for (User user : userService.getAllUsers()) {
             if (user.getIdUser() == id) {
-                /*
-                user.setCarID(carForm.getCarID());
-                user.setImmatriculation(carForm.getImmatriculation());
-                user.setMarque(carForm.getMarque());
-                user.setModele(carForm.getModele());
-                user.setDateMiseCirculation(carForm.getDateMiseCirculation());
-                user.setPrixLocation(carForm.getPrixLocation());
-                user.setEtat(carForm.getEtat());
 
-                carService.saveCar(user);
-                return "redirect:/user/" + user.getCarID();
+                user.setIdUser(userForm.getIdUser());
+                user.setUsername(userForm.getUsername());
+                user.setFirstname(userForm.getFirstname());
+                user.setLastname(userForm.getLastname());
+                user.setRoles(userForm.getRoles());
+                user.setPassword(userForm.getPassword());
 
-                 */
+                userService.saveUser(user);
+                return "redirect:/user/" + user.getIdUser();
             }
         }
         return "redirect:/user/all";
